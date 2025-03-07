@@ -17,29 +17,27 @@
 */
 
 const dataReverse = (data) => {
-  const DividerIntoGroupsOfEightElements = (data) => {
+  const getGroups = (array) => {
     const result = [];
-    let groupOfEight = [];
+    let group = [];
 
-    data.forEach((el, i) => {
-      groupOfEight.push(el);
+    array.forEach((el, i) => {
+      group.push(el);
       if ((i + 1) % 8 === 0) {
-        result.push(groupOfEight);
-        groupOfEight = [];
+        result.push(group);
+        group = [];
       }
     });
 
     return result;
   };
 
-  const combineGroupsIntoArray = (arrayArrays) =>
+  const getArray = (arrayArrays) =>
     String(arrayArrays)
       .split(",")
       .map((el) => (el ? +el : null));
 
-  const groupedData = DividerIntoGroupsOfEightElements(data);
-  const reversedGroupedData = groupedData.reverse();
-  return combineGroupsIntoArray(reversedGroupedData);
+  return getArray(getGroups(data).reverse());
 };
 
 console.log(dataReverse([1,1,1,1,1,1,1,1,
