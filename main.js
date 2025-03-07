@@ -11,43 +11,38 @@
 проходить циклом по входному массиву и в цикле:
 на каждой итерации добавить в массив группы текущий элемент
 проверить, если текущая итерация кратна 8, то добавить массив группы в массив результата
-
 развернуть массив результата
-соединить в один массив
+    соединить в один массив
 
 */
 
-const dataReverse = data => {
+const dataReverse = (data) => {
+  const DividerIntoGroupsOfEightElements = (data) => {
+    const result = [];
+    let groupOfEight = [];
 
-    const DividerIntoGroupsOfEightElements = (data) => {
+    data.forEach((el, i) => {
+      groupOfEight.push(el);
+      if ((i + 1) % 8 === 0) {
+        result.push(groupOfEight);
+        groupOfEight = [];
+      }
+    });
 
-        const result = []
-        let groupOfEight = []
+    return result;
+  };
 
-        data.forEach((el, i) => {
-            groupOfEight.push(el)
-            if ((i + 1) % 8 === 0) {
-                result.push(groupOfEight)
-                groupOfEight = []
-            }
-            
-        })
+  const combineGroupsIntoArray = (arrayArrays) =>
+    String(arrayArrays)
+      .split(",")
+      .map((el) => (el ? +el : null));
 
-        return result
+  const groupedData = DividerIntoGroupsOfEightElements(data);
+  const reversedGroupedData = groupedData.reverse();
+  return combineGroupsIntoArray(reversedGroupedData);
+};
 
-    }
-
-    return DividerIntoGroupsOfEightElements(data)
-
-    // data.forEach((el, i) => {
-    //     stack.push(el)
-    //     if ((i + 1) % 8 === 0) {
-    //         result.push(stack)
-    //         stack = []
-    //     }
-        
-    // })
-    return result
-}
-
-console.log(dataReverse([1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,0,1,0,1,0]))
+console.log(dataReverse([1,1,1,1,1,1,1,1,
+    0,0,0,0,0,0,0,0,
+    0,0,0,0,1,1,1,1,
+    1,0,1,0,1,0,1,0]))
