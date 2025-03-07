@@ -19,17 +19,34 @@
 
 const dataReverse = data => {
 
-    const result = []
-    let stack = []
+    const DividerIntoGroupsOfEightElements = (data) => {
 
-    data.forEach((el, i) => {
-        stack.push(el)
-        if ((i + 1) % 8 === 0) {
-            result.push(stack)
-            stack = []
-        }
+        const result = []
+        let groupOfEight = []
+
+        data.forEach((el, i) => {
+            groupOfEight.push(el)
+            if ((i + 1) % 8 === 0) {
+                result.push(groupOfEight)
+                groupOfEight = []
+            }
+            
+        })
+
+        return result
+
+    }
+
+    return DividerIntoGroupsOfEightElements(data)
+
+    // data.forEach((el, i) => {
+    //     stack.push(el)
+    //     if ((i + 1) % 8 === 0) {
+    //         result.push(stack)
+    //         stack = []
+    //     }
         
-    })
+    // })
     return result
 }
 
